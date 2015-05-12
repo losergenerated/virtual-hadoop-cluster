@@ -54,7 +54,8 @@ Vagrant.configure("2") do |config|
   config.vm.define :master do |master|
     master.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node1"
-      v.customize ["modifyvm", :id, "--memory", "4096"]
+      #v.customize ["modifyvm", :id, "--memory", "4096"]
+      v.customize ["modifyvm", :id, "--memory", "2048"]
     end
     master.vm.network :private_network, ip: "10.211.55.100"
     master.vm.hostname = "vm-cluster-node1"
@@ -67,7 +68,8 @@ Vagrant.configure("2") do |config|
     slave1.vm.box = "precise64"
     slave1.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node2"
-      v.customize ["modifyvm", :id, "--memory", "2048"]
+      #v.customize ["modifyvm", :id, "--memory", "2048"]
+      v.customize ["modifyvm", :id, "--memory", "1024"]
     end
     slave1.vm.network :private_network, ip: "10.211.55.101"
     slave1.vm.hostname = "vm-cluster-node2"
@@ -75,28 +77,28 @@ Vagrant.configure("2") do |config|
     slave1.vm.provision :hostmanager
   end
 
-  config.vm.define :slave2 do |slave2|
-    slave2.vm.box = "precise64"
-    slave2.vm.provider :virtualbox do |v|
-      v.name = "vm-cluster-node3"
-      v.customize ["modifyvm", :id, "--memory", "2048"]
-    end
-    slave2.vm.network :private_network, ip: "10.211.55.102"
-    slave2.vm.hostname = "vm-cluster-node3"
-    slave2.vm.provision :shell, :inline => $hosts_script
-    slave2.vm.provision :hostmanager
-  end
+  #config.vm.define :slave2 do |slave2|
+    #slave2.vm.box = "precise64"
+    #slave2.vm.provider :virtualbox do |v|
+      #v.name = "vm-cluster-node3"
+      #v.customize ["modifyvm", :id, "--memory", "2048"]
+    #end
+    #slave2.vm.network :private_network, ip: "10.211.55.102"
+    #slave2.vm.hostname = "vm-cluster-node3"
+    #slave2.vm.provision :shell, :inline => $hosts_script
+    #slave2.vm.provision :hostmanager
+  #end
 
-  config.vm.define :slave3 do |slave3|
-    slave3.vm.box = "precise64"
-    slave3.vm.provider :virtualbox do |v|
-      v.name = "vm-cluster-node4"
-      v.customize ["modifyvm", :id, "--memory", "2048"]
-    end
-    slave3.vm.network :private_network, ip: "10.211.55.103"
-    slave3.vm.hostname = "vm-cluster-node4"
-    slave3.vm.provision :shell, :inline => $hosts_script
-    slave3.vm.provision :hostmanager
-  end
+  #config.vm.define :slave3 do |slave3|
+    #slave3.vm.box = "precise64"
+    #slave3.vm.provider :virtualbox do |v|
+      #v.name = "vm-cluster-node4"
+      #v.customize ["modifyvm", :id, "--memory", "2048"]
+    #end
+    #slave3.vm.network :private_network, ip: "10.211.55.103"
+    #slave3.vm.hostname = "vm-cluster-node4"
+    #slave3.vm.provision :shell, :inline => $hosts_script
+    #slave3.vm.provision :hostmanager
+  #end
 
 end
