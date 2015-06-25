@@ -6,12 +6,11 @@ This README describes how to get the cluster with Cloudera Manager up and runnin
 
 ## Specs
 
-The cluster conists of 4 nodes:
+The cluster conists of 1 nodes:
 
-* Master node with 4GB of RAM (Running the NameNode, Hue, ResourceManager etc. after installing the Hadoop services)
-* 3 slaves with 2GB of RAM each (Running DataNodes)
+* Master node with 8GB of RAM (Running the NameNode, Hue, ResourceManager etc. after installing the Hadoop services. Also running DataNode, which is us)
 
-As you can see, you'll need at least 10GB of free RAM to run this. If you have less, you can try to remove one machine from the Vagrantfile. This will lead to worse performance though!
+As you can see, you'll need at least 8GB of free RAM to run this.
 
 ## Usage
 
@@ -28,7 +27,7 @@ $ vagrant plugin install vagrant-hostmanager
 Clone this repository.
 
 ```bash
-$ git clone https://github.com/DandyDev/virtual-hadoop-cluster.git
+$ git clone https://github.com/losergenerated/virtual-hadoop-cluster.git
 ```
 
 Provision the bare cluster. It will ask you to enter your password, so it can modify your `/etc/hosts` file for easy access in your browser. It uses the Vagrant Hostmanager plugin to do this.
